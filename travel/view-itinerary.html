@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your US Trip Itinerary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply background image to the entire page */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('images/gr.jpeg') no-repeat center center fixed; 
+            background-size: cover;
+            color: rgb(192, 50, 50); /* Ensure text is readable on the background */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Container for the itinerary details */
+        .content-container {
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 40px auto;
+            color: white; /* Ensuring text is readable on dark background */
+        }
+
+        h1, h2 {
+            color: #14130e; /* Use a bright color for headings */
+        }
+
+        /* Button styling */
+        #export-pdf, #share-itinerary {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            width: 200px;
+        }
+
+        #export-pdf {
+            background-color: #dc3545;
+        }
+
+        #share-itinerary {
+            background-color: #007bff;
+        }
+
+        #export-pdf:hover {
+            background-color: #c82333;
+        }
+
+        #share-itinerary:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body class="view-itinerary-page">
+    <header class="text-center my-4">
+        <h1>Your US Trip Itinerary</h1>
+    </header>
+    <div id="itinerary-display" class="container mb-4 content-container"></div>
+    <div class="text-center">
+        <button id="export-pdf" class="btn btn-danger mb-3"><i class="fas fa-file-pdf"></i> Export as PDF</button>
+        <button type="button" id="share-itinerary" class="btn btn-primary mb-3"><i class="fas fa-share-alt"></i> Share Itinerary</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const itinerary = JSON.parse(localStorage.getItem('itinerary'));
+            const displayDiv = document.getElementById('itinerary-display');
+
+            if (itinerary) {
+                displayDiv.innerHTML = `
+                    <h2 class="text-warning">${itinerary.tripName}</h2>
+                    <p><strong><i class="far fa-calendar-alt"></i> Start Date:</strong> ${itinerary.startDate}</p>
+                    <p><strong><i class="far fa-calendar-alt"></i> End Date:</strong> ${itinerary.endDate}</p>
+                    <p><strong><i class="fas fa-users"></i> Number of People:</strong> ${itinerary.numPeople}</p>
+                    <p><strong><i class="fas fa-plane"></i> Mode of Travel:</strong> ${itinerary.modeOfTravel}</p>
+                    <p><strong><i class="fas fa-route"></i> Travel Date:</strong> ${itinerary.travelDate}</p>
+                    <p><strong><i class="fas fa-info-circle"></i> Travel Details:</strong> ${itinerary.travelDetails}</p>
+                    <p><strong><i class="fas fa-hotel"></i> Stay Place:</strong> ${itinerary.stayPlace}</p>
+                    <p><strong><i class="fas fa-calendar-day"></i> Stay Days:</strong> ${itinerary.stayDays}</p>
+                    <p><strong><i class="fas fa-dollar-sign"></i> Currency:</strong> ${itinerary.currency}</p>
+                    <p><strong><i class="fas fa-wallet"></i> Total Budget:</strong> ${itinerary.currency} ${itinerary.budget}</p>
+                    <p><strong><i class="fas fa-money-bill-wave"></i> Estimated Expenses:</strong> ${itinerary.currency} ${itinerary.expenses}</p>
+                    <h3 class="mt-4"><i class="fas fa-map-marked-alt"></i> Locations & Activities:</h3>
+                    <ul>
+                        ${itinerary.locations.map(location => `<li>${location}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                displayDiv.innerHTML = '<p>No itinerary found. Please create one first.</p>';
+            }
+        });
+
+        // Export the itinerary as a PDF using jsPDF
+        document.getElementById('export-pdf').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'pt');
+
+            const itinerary = JSON.parse(localStorage.getItem('itinerary'));
+            if (itinerary) {
+                // Set document title
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(24);
+                doc.setTextColor(40, 40, 40);
+                doc.text(itinerary.tripName, 40, 40);
+
+                // Draw a line under the title
+                doc.setDrawColor(100, 100, 100);
+                doc.line(40, 50, 570, 50);
+
+                // Set default font
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(14);
+                doc.setTextColor(60, 60, 60);
+
+                // Add details with icons
+                doc.text(`Start Date: ${itinerary.startDate}`, 40, 80);
+                doc.text(`End Date: ${itinerary.endDate}`, 40, 100);
+                doc.text(`Number of People: ${itinerary.numPeople}`, 40, 120);
+                doc.text(`Mode of Travel: ${itinerary.modeOfTravel}`, 40, 140);
+                doc.text(`Travel Date: ${itinerary.travelDate}`, 40, 160);
+                doc.text(`Travel Details: ${itinerary.travelDetails}`, 40, 180);
+                doc.text(`Stay Place: ${itinerary.stayPlace}`, 40, 200);
+                doc.text(`Stay Days: ${itinerary.stayDays}`, 40, 220);
+                doc.text(`Currency: ${itinerary.currency}`, 40, 240);
+                doc.text(`Total Budget: ${itinerary.currency} ${itinerary.budget}`, 40, 260);
+                doc.text(`Estimated Expenses: ${itinerary.currency} ${itinerary.expenses}`, 40, 280);
+
+                // Draw a box around details
+                doc.setDrawColor(100, 100, 100);
+                doc.rect(30, 60, 540, 240);
+
+                // Adding header for locations
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.setTextColor(40, 40, 40);
+                doc.text('Locations & Activities:', 40, 330);
+
+                // Start yOffset right after the locations header
+                let yOffset = 350;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(14);
+                itinerary.locations.forEach((location, index) => {
+                    if (yOffset > 750) {  // if yOffset exceeds page height, add a new page
+                        doc.addPage();
+                        yOffset = 40;  // Reset yOffset for the new page
+                    }
+                    doc.text(`${index + 1}. ${location}`, 60, yOffset);
+                    yOffset += 20;  // Increase yOffset for next item
+                });
+
+                // Add a footer
+                doc.setFontSize(10);
+                doc.setTextColor(100, 100, 100);
+                doc.text('Generated using Your US Trip Itinerary App', 40, doc.internal.pageSize.height - 30);
+
+                // Save the PDF with the filename 'itinerary.pdf'
+                doc.save('itinerary.pdf');
+            } else {
+                console.error('No itinerary found in localStorage');
+                alert('No itinerary found to export.');
+            }
+        });
+    </script>
+</body>
+</html>

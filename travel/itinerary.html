@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Your US Trip Itinerary</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <!-- jQuery UI CSS -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1><i class="fas fa-map-marked-alt"></i> Plan Your US Trip</h1>
+    </header>
+    <div class="container mt-5">
+        <form id="itinerary-form" class="bg-light p-4 rounded shadow">
+            <div class="form-group">
+                <label for="trip-name"><i class="fas fa-suitcase"></i> Trip Name:</label>
+                <input type="text" id="trip-name" name="tripName" class="form-control" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="start-date"><i class="far fa-calendar-alt"></i> Start Date:</label>
+                    <input type="date" id="start-date" name="startDate" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="end-date"><i class="far fa-calendar-alt"></i> End Date:</label>
+                    <input type="date" id="end-date" name="endDate" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="num-days"><i class="fas fa-calendar-day"></i> Number of Days:</label>
+                    <input type="number" id="num-days" name="numDays" class="form-control" required>
+                </div>
+                
+                <div class="form-group col-md-4">
+                    <label for="num-people"><i class="fas fa-users"></i> Number of People:</label>
+                    <input type="number" id="num-people" name="numPeople" class="form-control" required>
+                </div>
+            </div>
+
+            <h2 class="mt-4"><i class="fas fa-plane"></i> Travel Details</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="mode-of-travel"><i class="fas fa-route"></i> Mode of Travel:</label>
+                    <select id="mode-of-travel" name="modeOfTravel" class="form-control" required>
+                        <option value="flight">Flight</option>
+                        <option value="bus">Bus</option>
+                        <option value="train">Train</option>
+                        <option value="car">Car</option>
+                        <!-- Add more travel modes as needed -->
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="travel-date"><i class="far fa-calendar-alt"></i> Date of Travel:</label>
+                    <input type="date" id="travel-date" name="travelDate" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="travel-details"><i class="fas fa-info-circle"></i> Travel Details (Flight/Bus Number, etc.):</label>
+                <input type="text" id="travel-details" name="travelDetails" class="form-control" required>
+            </div>
+
+            <div id="locations" class="mt-4">
+                <h2 class="mb-3"><i class="fas fa-map-pin"></i> Locations & Activities</h2>
+                
+                <!-- This is where the location dropdown is added -->
+                <div class="form-group">
+                    <label for="location"><i class="fas fa-map-marker-alt"></i> Select Location:</label>
+                    <input type="text" id="location" name="location" class="form-control location-input" placeholder="Start typing location...">
+                
+                    <select id="location" name="location" class="form-control">
+                        <option value="New York">New York, NY</option>
+                        <option value="Los Angeles">Los Angeles, CA</option>
+                        <option value="Chicago">Chicago, IL</option>
+                        <option value="Houston">Houston, TX</option>
+                        <option value="Phoenix">Phoenix, AZ</option>
+                        <option value="Philadelphia">Philadelphia, PA</option>
+                        <option value="San Antonio">San Antonio, TX</option>
+                        <option value="San Diego">San Diego, CA</option>
+                        <option value="Dallas">Dallas, TX</option>
+                        <option value="San Jose">San Jose, CA</option>
+                        <option value="Austin">Austin, TX</option>
+                        <option value="Jacksonville">Jacksonville, FL</option>
+                        <option value="Fort Worth">Fort Worth, TX</option>
+                        <option value="Columbus">Columbus, OH</option>
+                        <option value="Charlotte">Charlotte, NC</option>
+                        <option value="San Francisco">San Francisco, CA</option>
+                        <option value="Indianapolis">Indianapolis, IN</option>
+                        <option value="Seattle">Seattle, WA</option>
+                        <option value="Denver">Denver, CO</option>
+                        <option value="Washington">Washington, DC</option>
+                        <option value="Boston">Boston, MA</option>
+                        <option value="El Paso">El Paso, TX</option>
+                        <option value="Nashville">Nashville, TN</option>
+                        <option value="Detroit">Detroit, MI</option>
+                        <option value="Oklahoma City">Oklahoma City, OK</option>
+                        <option value="Portland">Portland, OR</option>
+                        <option value="Las Vegas">Las Vegas, NV</option>
+                        <option value="Memphis">Memphis, TN</option>
+                        <option value="Louisville">Louisville, KY</option>
+                        <option value="Baltimore">Baltimore, MD</option>
+                        <option value="Milwaukee">Milwaukee, WI</option>
+                        <option value="Albuquerque">Albuquerque, NM</option>
+                        <option value="Tucson">Tucson, AZ</option>
+                        <option value="Fresno">Fresno, CA</option>
+                        <option value="Mesa">Mesa, AZ</option>
+                        <option value="Sacramento">Sacramento, CA</option>
+                        <option value="Atlanta">Atlanta, GA</option>
+                        <option value="Kansas City">Kansas City, MO</option>
+                        <option value="Colorado Springs">Colorado Springs, CO</option>
+                        <option value="Miami">Miami, FL</option>
+                        <option value="Raleigh">Raleigh, NC</option>
+                        <option value="Omaha">Omaha, NE</option>
+                        <option value="Long Beach">Long Beach, CA</option>
+                        <option value="Virginia Beach">Virginia Beach, VA</option>
+                        <option value="Oakland">Oakland, CA</option>
+                        <option value="Minneapolis">Minneapolis, MN</option>
+                        <option value="Tulsa">Tulsa, OK</option>
+                        <option value="Arlington">Arlington, TX</option>
+                        <option value="Tampa">Tampa, FL</option>
+                        <option value="New Orleans">New Orleans, LA</option>
+                        <option value="Wichita">Wichita, KS</option>
+                        <option value="Cleveland">Cleveland, OH</option>
+                        <option value="Bakersfield">Bakersfield, CA</option>
+                        <option value="Aurora">Aurora, CO</option>
+                        <option value="Anaheim">Anaheim, CA</option>
+                        <option value="Honolulu">Honolulu, HI</option>
+                        <option value="Santa Ana">Santa Ana, CA</option>
+                        <option value="Riverside">Riverside, CA</option>
+                        <option value="Corpus Christi">Corpus Christi, TX</option>
+                        <option value="Lexington">Lexington, KY</option>
+                        <option value="Henderson">Henderson, NV</option>
+                        <option value="Stockton">Stockton, CA</option>
+                        <option value="Saint Paul">Saint Paul, MN</option>
+                        <option value="Cincinnati">Cincinnati, OH</option>
+                        <option value="St. Louis">St. Louis, MO</option>
+                        <option value="Pittsburgh">Pittsburgh, PA</option>
+                        <option value="Greensboro">Greensboro, NC</option>
+                        <option value="Anchorage">Anchorage, AK</option>
+                        <option value="Plano">Plano, TX</option>
+                        <option value="Lincoln">Lincoln, NE</option>
+                        <option value="Orlando">Orlando, FL</option>
+                        <option value="Irvine">Irvine, CA</option>
+                        <option value="Newark">Newark, NJ</option>
+                        <option value="Toledo">Toledo, OH</option>
+                        <option value="Durham">Durham, NC</option>
+                        <option value="Chula Vista">Chula Vista, CA</option>
+                        <option value="Fort Wayne">Fort Wayne, IN</option>
+                        <option value="Jersey City">Jersey City, NJ</option>
+                        <option value="St. Petersburg">St. Petersburg, FL</option>
+                        <option value="Laredo">Laredo, TX</option>
+                        <option value="Madison">Madison, WI</option>
+                        <option value="Chandler">Chandler, AZ</option>
+                        <option value="Buffalo">Buffalo, NY</option>
+                        <option value="Lubbock">Lubbock, TX</option>
+                        <option value="Scottsdale">Scottsdale, AZ</option>
+                        <option value="Reno">Reno, NV</option>
+                        <option value="Glendale">Glendale, AZ</option>
+                        <option value="Gilbert">Gilbert, AZ</option>
+                        <option value="Winston-Salem">Winston-Salem, NC</option>
+                        <option value="North Las Vegas">North Las Vegas, NV</option>
+                        <option value="Norfolk">Norfolk, VA</option>
+                        <option value="Chesapeake">Chesapeake, VA</option>
+                        <option value="Garland">Garland, TX</option>
+                        <option value="Irving">Irving, TX</option>
+                        <option value="Hialeah">Hialeah, FL</option>
+                        <option value="Fremont">Fremont, CA</option>
+                        <option value="Boise">Boise, ID</option>
+                        <option value="Richmond">Richmond, VA</option>
+                        <option value="Baton Rouge">Baton Rouge, LA</option>
+                        <option value="Spokane">Spokane, WA</option>
+                        <option value="Des Moines">Des Moines, IA</option>
+                        <option value="Tacoma">Tacoma, WA</option>
+                        <option value="San Bernardino">San Bernardino, CA</option>
+                        <option value="Modesto">Modesto, CA</option>
+                        <option value="Fontana">Fontana, CA</option>
+                        <option value="Santa Clarita">Santa Clarita, CA</option>
+                        <option value="Birmingham">Birmingham, AL</option>
+                        <option value="Oxnard">Oxnard, CA</option>
+                        <option value="Fayetteville">Fayetteville, NC</option>
+                        <option value="Moreno Valley">Moreno Valley, CA</option>
+                        <option value="Rochester">Rochester, NY</option>
+                        <option value="Glendale">Glendale, CA</option>
+                        <option value="Huntington Beach">Huntington Beach, CA</option>
+                        <option value="Salt Lake City">Salt Lake City, UT</option>
+                        <option value="Grand Rapids">Grand Rapids, MI</option>
+                        <option value="Amarillo">Amarillo, TX</option>
+                        <option value="Yonkers">Yonkers, NY</option>
+                        <option value="Aurora">Aurora, IL</option>
+                        <option value="Montgomery">Montgomery, AL</option>
+                        <option value="Akron">Akron, OH</option>
+                        <option value="Little Rock">Little Rock, AR</option>
+                        <option value="Huntsville">Huntsville, AL</option>
+                        <option value="Augusta">Augusta, GA</option>
+                        <option value="Port St. Lucie">Port St. Lucie, FL</option>
+                        <option value="Grand Prairie">Grand Prairie, TX</option>
+                        <option value="Columbus">Columbus, GA</option>
+                        <option value="Tallahassee">Tallahassee, FL</option>
+                        <option value="Overland Park">Overland Park, KS</option>
+                        <option value="Tempe">Tempe, AZ</option>
+                        <option value="McKinney">McKinney, TX</option>
+                        <option value="Mobile">Mobile, AL</option>
+                        <option value="Cape Coral">Cape Coral, FL</option>
+                        <option value="Shreveport">Shreveport, LA</option>
+                        <option value="Frisco">Frisco, TX</option>
+                        <option value="Knoxville">Knoxville, TN</option>
+                        <option value="Worcester">Worcester, MA</option>
+                        <option value="Brownsville">Brownsville, TX</option>
+                        <option value="Vancouver">Vancouver, WA</option>
+                        <option value="Fort Lauderdale">Fort Lauderdale, FL</option>
+                        <option value="Sioux Falls">Sioux Falls, SD</option>
+                        <option value="Ontario">Ontario, CA</option>
+                        <option value="Chattanooga">Chattanooga, TN</option>
+                        <option value="Providence">Providence, RI</option>
+                        <option value="Newport News">Newport News, VA</option>
+                        <option value="Rancho Cucamonga">Rancho Cucamonga, CA</option>
+                        <option value="Santa Rosa">Santa Rosa, CA</option>
+                        <option value="Peoria">Peoria, AZ</option>
+                        <option value="Oceanside">Oceanside, CA</option>
+                        <option value="Elk Grove">Elk Grove, CA</option>
+                        <option value="Salem">Salem, OR</option>
+                        <option value="Pembroke Pines">Pembroke Pines, FL</option>
+                        <option value="Eugene">Eugene, OR</option>
+                        <option value="Garden Grove">Garden Grove, CA</option>
+                        <option value="Cary">Cary, NC</option>
+                        <option value="Fort Collins">Fort Collins, CO</option>
+                        <option value="Corona">Corona, CA</option>
+                        <option value="Springfield">Springfield, MO</option>
+                        <option value="Jackson">Jackson, MS</option>
+                        <option value="Alexandria">Alexandria, VA</option>
+                        <option value="Hayward">Hayward, CA</option>
+                        <option value="Clarksville">Clarksville, TN</option>
+                        <option value="Lakewood">Lakewood, CO</option>
+                        <option value="Lancaster">Lancaster, CA</option>
+                        <option value="Salinas">Salinas, CA</option>
+                        <option value="Palmdale">Palmdale, CA</option>
+                        <option value="Hollywood">Hollywood, FL</option>
+                        <option value="Springfield">Springfield, MA</option>
+                        <option value="Macon">Macon, GA</option>
+                        <option value="Kansas City">Kansas City, KS</option>
+                        <option value="Sunnyvale">Sunnyvale, CA</option>
+                        <option value="Pomona">Pomona, CA</option>
+                        <option value="Killeen">Killeen, TX</option>
+                        <option value="Escondido">Escondido, CA</option>
+                        <option value="Pasadena">Pasadena, TX</option>
+                        <option value="Naperville">Naperville, IL</option>
+                        <option value="Bellevue">Bellevue, WA</option>
+                        <option value="Joliet">Joliet, IL</option>
+                        <option value="Murfreesboro">Murfreesboro, TN</option>
+                        <option value="Midland">Midland, TX</option>
+                        <option value="Rockford">Rockford, IL</option>
+                        <option value="Paterson">Paterson, NJ</option>
+                        <option value="Savannah">Savannah, GA</option>
+                        <option value="Bridgeport">Bridgeport, CT</option>
+                        <option value="Torrance">Torrance, CA</option>
+                        <option value="McAllen">McAllen, TX</option>
+                        <option value="Syracuse">Syracuse, NY</option>
+                        <option value="Surprise">Surprise, AZ</option>
+                        <option value="Denton">Denton, TX</option>
+                        <option value="Roseville">Roseville, CA</option>
+                        <option value="Thornton">Thornton, CO</option>
+                        <option value="Miramar">Miramar, FL</option>
+                        <option value="Pasadena">Pasadena, CA</option>
+                        <option value="Mesquite">Mesquite, TX</option>
+                        <option value="Olathe">Olathe, KS</option>
+                        <option value="Dayton">Dayton, OH</option>
+                        <option value="Carrollton">Carrollton, TX</option>
+                        <option value="Waco">Waco, TX</option>
+                        <option value="Orange">Orange, CA</option>
+                        <option value="Fullerton">Fullerton, CA</option>
+                        <option value="Charleston">Charleston, SC</option>
+                        <option value="West Valley City">West Valley City, UT</option>
+                        <option value="Visalia">Visalia, CA</option>
+                        <option value="Hampton">Hampton, VA</option>
+                        <option value="Gainesville">Gainesville, FL</option>
+                        <option value="Warren">Warren, MI</option>
+                        <option value="Coral Springs">Coral Springs, FL</option>
+                        <option value="Cedar Rapids">Cedar Rapids, IA</option>
+                        <option value="Round Rock">Round Rock, TX</option>
+                        <option value="Sterling Heights">Sterling Heights, MI</option>
+                        <option value="Kent">Kent, WA</option>
+                        <option value="Columbia">Columbia, MO</option>
+                        <option value="Santa Clara">Santa Clara, CA</option>
+                        <option value="New Haven">New Haven, CT</option>
+                        <option value="Stamford">Stamford, CT</option>
+                        <option value="Concord">Concord, CA</option>
+                        <option value="Elizabeth">Elizabeth, NJ</option>
+                        <option value="Athens">Athens, GA</option>
+                        <option value="Thousand Oaks">Thousand Oaks, CA</option>
+                        <option value="Lafayette">Lafayette, LA</option>
+                        <option value="Simi Valley">Simi Valley, CA</option>
+                        <option value="Topeka">Topeka, KS</option>
+                        <option value="Norman">Norman, OK</option>
+                        <option value="Fargo">Fargo, ND</option>
+                        <option value="Wilmington">Wilmington, NC</option>
+                        <option value="Abilene">Abilene, TX</option>
+                        <option value="Odessa">Odessa, TX</option>
+                        <option value="Columbia">Columbia, SC</option>
+                        <option value="Pearland">Pearland, TX</option>
+                        <option value="Victorville">Victorville, CA</option>
+                        <option value="Hartford">Hartford, CT</option>
+                        <option value="Vallejo">Vallejo, CA</option>
+                        <option value="Allentown">Allentown, PA</option>
+                        <option value="Berkeley">Berkeley, CA</option>
+                        <option value="Richardson">Richardson, TX</option>
+                        <option value="Arvada">Arvada, CO</option>
+                        <option value="Ann Arbor">Ann Arbor, MI</option>
+                        <option value="Rochester">Rochester, MN</option>
+                        <option value="Cambridge">Cambridge, MA</option>
+                        <option value="Sugar Land">Sugar Land, TX</option>
+                        <option value="Lansing">Lansing, MI</option>
+                        <option value="Evansville">Evansville, IN</option>
+                        <option value="College Station">College Station, TX</option>
+                        <option value="Fairfield">Fairfield, CA</option>
+                        <option value="Clearwater">Clearwater, FL</option>
+                        <option value="Beaumont">Beaumont, TX</option>
+                        <option value="Independence">Independence, MO</option>
+                        <option value="Provo">Provo, UT</option>
+                        <option value="West Jordan">West Jordan, UT</option>
+                        <option value="Murrieta">Murrieta, CA</option>
+                        <option value="Palm Bay">Palm Bay, FL</option>
+                        <option value="El Monte">El Monte, CA</option>
+                        <option value="Carlsbad">Carlsbad, CA</option>
+                        <option value="North Charleston">North Charleston, SC</option>
+                        <option value="Temecula">Temecula, CA</option>
+                        <option value="Clovis">Clovis, CA</option>
+                        <option value="Springfield">Springfield, IL</option>
+                        <option value="Meridian">Meridian, ID</option>
+                        <option value="Westminster">Westminster, CO</option>
+                        <option value="Costa Mesa">Costa Mesa, CA</option>
+                        <option value="High Point">High Point, NC</option>
+                        <option value="Manchester">Manchester, NH</option>
+                        <option value="Pueblo">Pueblo, CO</option>
+                        <option value="Lakeland">Lakeland, FL</option>
+                        <option value="Pompano Beach">Pompano Beach, FL</option>
+                        <option value="West Palm Beach">West Palm Beach, FL</option>
+                        <option value="Antioch">Antioch, CA</option>
+                        <option value="Everett">Everett, WA</option>
+                        <option value="Downey">Downey, CA</option>
+                        <option value="Lowell">Lowell, MA</option>
+                        <option value="Centennial">Centennial, CO</option>
+                        <option value="Elgin">Elgin, IL</option>
+                        <option value="Richmond">Richmond, CA</option>
+                        <option value="Peoria">Peoria, IL</option>
+                        <option value="Broken Arrow">Broken Arrow, OK</option>
+                        <option value="Miami Gardens">Miami Gardens, FL</option>
+                        <option value="Billings">Billings, MT</option>
+                        <option value="Jurupa Valley">Jurupa Valley, CA</option>
+                        <option value="Sandy Springs">Sandy Springs, GA</option>
+                        <option value="Gresham">Gresham, OR</option>
+                        <option value="Lewisville">Lewisville, TX</option>
+                        <option value="Hillsboro">Hillsboro, OR</option>
+                        <option value="Ventura">Ventura, CA</option>
+                        <option value="Greeley">Greeley, CO</option>
+                        <option value="Inglewood">Inglewood, CA</option>
+                        <option value="Waterbury">Waterbury, CT</option>
+                        <option value="League City">League City, TX</option>
+                        <option value="Santa Maria">Santa Maria, CA</option>
+                        <option value="Tyler">Tyler, TX</option>
+                        <option value="Davie">Davie, FL</option>
+                        <option value="Lakewood">Lakewood, NJ</option>
+                        <option value="Daly City">Daly City, CA</option>
+                        <option value="Boulder">Boulder, CO</option>
+                        <option value="Allen">Allen, TX</option>
+                        <option value="West Covina">West Covina, CA</option>
+                        <option value="Sparks">Sparks, NV</option>
+                        <option value="Wichita Falls">Wichita Falls, TX</option>
+                        <option value="Green Bay">Green Bay, WI</option>
+                        <option value="San Mateo">San Mateo, CA</option>
+                        <option value="Norwalk">Norwalk, CA</option>
+                        <option value="Rialto">Rialto, CA</option>
+                        <option value="Las Cruces">Las Cruces, NM</option>
+                        <option value="Chico">Chico, CA</option>
+                        <option value="El Cajon">El Cajon, CA</option>
+                        <option value="Burbank">Burbank, CA</option>
+                        <option value="South Bend">South Bend, IN</option>
+                        <option value="Renton">Renton, WA</option>
+                        <option value="Vista">Vista, CA</option>
+                        <option value="Davenport">Davenport, IA</option>
+                        <option value="Edinburg">Edinburg, TX</option>
+                        <option value="Tuscaloosa">Tuscaloosa, AL</option>
+                        <option value="Carmel">Carmel, IN</option>
+                        <option value="Spokane Valley">Spokane Valley, WA</option>
+                        <option value="San Angelo">San Angelo, TX</option>
+                        <option value="Vacaville">Vacaville, CA</option>
+                        <option value="Clinton">Clinton, MI</option>
+                        <option value="Bend">Bend, OR</option>
+                        <option value="Woodbridge">Woodbridge, NJ</option>
+                        <option value="San Marcos">San Marcos, CA</option>
+                        <option value="Jackson">Jackson, TN</option>
+                        <option value="Hesperia">Hesperia, CA</option>
+                        <option value="Malden">Malden, MA</option>
+                        <option value="Missoula">Missoula, MT</option>
+                        <option value="Plymouth">Plymouth, MN</option>
+                        <option value="Bolingbrook">Bolingbrook, IL</option>
+                        <option value="Perris">Perris, CA</option>
+                        <option value="Apple Valley">Apple Valley, CA</option>
+                        <option value="Medford">Medford, OR</option>
+                        <option value="Folsom">Folsom, CA</option>
+                        <option value="Gulfport">Gulfport, MS</option>
+                        <option value="Kirkland">Kirkland, WA</option>
+                        <option value="Rock Hill">Rock Hill, SC</option>
+                        <option value="Pleasanton">Pleasanton, CA</option>
+                        <option value="Bristol">Bristol, CT</option>
+                        <option value="Upland">Upland, CA</option>
+                        <option value="Bloomington">Bloomington, MN</option>
+                        <option value="Tustin">Tustin, CA</option>
+                        <option value="Alhambra">Alhambra, CA</option>
+                        <option value="Fishers">Fishers, IN</option>
+                        <option value="Kenosha">Kenosha, WI</option>
+                        <option value="Nampa">Nampa, ID</option>
+                        <option value="Baldwin Park">Baldwin Park, CA</option>
+                        <option value="Chino Hills">Chino Hills, CA</option>
+                        <option value="Alameda">Alameda, CA</option>
+                        <option value="Chino">Chino, CA</option>
+                        <option value="Greenville">Greenville, NC</option>
+                        <option value="Parma">Parma, OH</option>
+                        <option value="Dearborn">Dearborn, MI</option>
+                        <option value="Monroe">Monroe, MI</option>
+                        <option value="Plantation">Plantation, FL</option>
+                        <option value="Burbank">Burbank, IL</option>
+                        <option value="Torrington">Torrington, CT</option>
+                    </select>
+                </div>
+
+                <!-- Add more input fields for other locations or activities as needed -->
+            </div>
+            <button type="button" id="add-location" class="btn btn-info btn-block"><i class="fas fa-plus"></i> Add Location</button>
+
+            <h2 class="mt-4"><i class="fas fa-wallet"></i> Budget Tracker</h2>
+            <div class="form-group col-md-4">
+                <label for="currency"><i class="fas fa-money-bill"></i> Currency:</label>
+                <select id="currency" name="currency" class="form-control" required>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="NZD">NZD - New Zealand Dollar</option>
+                    <option value="ZAR">ZAR - South African Rand</option>
+                    <option value="SGD">SGD - Singapore Dollar</option>
+                    <option value="HKD">HKD - Hong Kong Dollar</option>
+                    <option value="MXN">MXN - Mexican Peso</option>
+                    <option value="BRL">BRL - Brazilian Real</option>
+                    <option value="RUB">RUB - Russian Ruble</option>
+                    <option value="SEK">SEK - Swedish Krona</option>
+                    <option value="NOK">NOK - Norwegian Krone</option>
+                    <option value="DKK">DKK - Danish Krone</option>
+                    <option value="KRW">KRW - South Korean Won</option>
+                    <option value="TRY">TRY - Turkish Lira</option>
+                    <option value="ARS">ARS - Argentine Peso</option>
+                    <option value="PLN">PLN - Polish Zloty</option>
+                    <option value="THB">THB - Thai Baht</option>
+                    <option value="MYR">MYR - Malaysian Ringgit</option>
+                    <option value="PHP">PHP - Philippine Peso</option>
+                    <option value="IDR">IDR - Indonesian Rupiah</option>
+                    <option value="VND">VND - Vietnamese Dong</option>
+                    <option value="ILS">ILS - Israeli New Shekel</option>
+                    <option value="SAR">SAR - Saudi Riyal</option>
+                    <option value="AED">AED - United Arab Emirates Dirham</option>
+                    <option value="EGP">EGP - Egyptian Pound</option>
+                    <option value="QAR">QAR - Qatari Riyal</option>
+                    <option value="KWD">KWD - Kuwaiti Dinar</option>
+                    <option value="OMR">OMR - Omani Rial</option>
+                    <option value="BHD">BHD - Bahraini Dinar</option>
+                    <option value="LKR">LKR - Sri Lankan Rupee</option>
+                    <option value="PKR">PKR - Pakistani Rupee</option>
+                    <option value="BDT">BDT - Bangladeshi Taka</option>
+                    <option value="NGN">NGN - Nigerian Naira</option>
+                    <option value="KES">KES - Kenyan Shilling</option>
+                    <option value="TZS">TZS - Tanzanian Shilling</option>
+                    <option value="GHS">GHS - Ghanaian Cedi</option>
+                    <option value="UGX">UGX - Ugandan Shilling</option>
+                    <option value="XOF">XOF - West African CFA Franc</option>
+                    <option value="XAF">XAF - Central African CFA Franc</option>
+                    <option value="MUR">MUR - Mauritian Rupee</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label for="budget"><i class="fas fa-dollar-sign"></i> Total Budget:</label>
+                <input type="number" id="budget" name="budget" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="expenses"><i class="fas fa-money-bill-wave"></i> Estimated Expenses:</label>
+                <input type="number" id="expenses" name="expenses" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block"><i class="fas fa-save"></i> Save Itinerary</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</body>
+</html>

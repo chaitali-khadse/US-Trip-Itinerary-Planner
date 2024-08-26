@@ -1,0 +1,307 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.location {
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+}
+
+#itinerary-display {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#itinerary-display h2 {
+    margin-bottom: 10px;
+}
+
+#itinerary-display p {
+    margin-bottom: 5px;
+}
+
+.btn-get-started {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.btn-get-started:hover {
+    background-color: #0056b3;
+}
+
+#locations h2 {
+    margin-top: 20px;
+}
+
+#export-pdf, #share-itinerary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#export-pdf:hover, #share-itinerary:hover {
+    background-color: #218838;
+}
+
+#share-itinerary {
+    background-color: #17a2b8;
+}
+
+#share-itinerary:hover {
+    background-color: #138496;
+}
+/* styles.css */
+
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.landing-page {
+    background-image: url('images/back.png'); /* Update the path if your file is in a different location */
+    background-size: cover; /* Make the background cover the entire element */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Ensure the background doesn't repeat */
+    min-height: 100vh; /* Ensure the page takes up at least the full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center align text */
+    color: #fff; /* Text color for better readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add a subtle shadow to text */
+    padding: 20px; /* Add padding to prevent content from touching the edges */
+}
+
+.landing-page h1 {
+    font-size: 2.5em; /* Increase the size of the heading */
+    margin-bottom: 20px; /* Add margin below the heading */
+}
+
+.landing-page p {
+    font-size: 1.25em; /* Increase the size of the paragraph text */
+    margin-bottom: 30px; /* Add margin below the paragraph */
+}
+
+.btn-get-started {
+    display: inline-block;
+    padding: 15px 30px; /* Increase padding for a larger button */
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.5em; /* Increase font size for the button text */
+    margin-top: 20px;
+}
+
+.btn-get-started:hover {
+    background-color: #0056b3;
+}
+/* styles.css */
+
+/* Add background to the entire body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/gr.jpeg'); /* Update the path if your file is in a different location */
+    background-size: cover; /* Make the background cover the entire element */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Ensure the background doesn't repeat */
+    color: #fff; /* Set default text color to white for better readability */
+}
+
+/* Form styling */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners for a softer look */
+    color: #333; /* Dark text color for the form contents */
+}
+
+/* Label and input styling */
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Add border for better input visibility */
+    border-radius: 5px; /* Rounded corners for inputs */
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.location {
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Add this at the bottom of your existing styles.css */
+
+/* Specific styling for the view-itinerary.html page */
+.view-itinerary-page {
+    background: url('b3.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Ensuring text is readable on a dark background */
+    height: 100%;
+}
+/* Custom styling for the landing page */
+.landing-page {
+    position: relative;
+    background-image: url('images/back.png'); /* Update the path if your file is in a different location */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+
+/* Optional dark overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the darkness here */
+    z-index: 1;
+}
+
+.content {
+    z-index: 2; /* Make sure content is above the overlay */
+}
+
+.landing-page h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+
+.landing-page p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.btn-get-started {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: background-color 0.3s;
+}
+
+.btn-get-started:hover {
+    background-color: #0056b3;
+}
